@@ -1,0 +1,15 @@
+header {
+    background-color: #e63946; /* Fondo rojo */
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  nav a {
+    color: white;
+    font-weight: bold;
+  }
