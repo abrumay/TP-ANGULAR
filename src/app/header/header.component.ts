@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -8,5 +8,24 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  constructor(private router: Router) {}
 
-}
+    navigateToLogin() {
+    this.router.navigate(['/login']);
+    }
+    navigateToRoutines()
+    {
+    this.router.navigate(['/rutinas']);
+    }
+    navigateToHome()
+    {
+      this.router.navigate(['/home']);
+    }
+    navigateToRegister()
+    {
+      this.router.navigate(['/register']);
+    }
+
+
+
+  }
