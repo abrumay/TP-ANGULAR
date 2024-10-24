@@ -1,21 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RoutineService } from '../services/rutine.service'; // Corregido: 'rutine' a 'routine'
+import { Rutina } from '../interfaces/routine.interface'; // Asegúrate de tener esta interfaz
 
 @Component({
   selector: 'app-routine-list',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './routine-list.component.html',
-  styleUrl: './routine-list.component.css'
+  styleUrls: ['./routine-list.component.css'] // Corregido: 'styleUrl' a 'styleUrls'
 })
-export class RoutineListComponent {
-  routines = [
-    { title: 'Rutina Full Body', description: 'Entrenamiento completo para todo el cuerpo.' },
-    { title: 'Cardio HIIT', description: 'Alta intensidad para quemar grasa rápidamente.' },
-    { title: 'Entrenamiento de Fuerza', description: 'Mejora tu fuerza y resistencia muscular.' },
-    { title: 'Yoga para Principiantes', description: 'Flexibilidad y relajación a través del yoga.' },
-    { title: 'Entrenamiento de Core', description: 'Fortalece el abdomen y la zona media.' },
-    { title: 'Entrenamiento de Circuito', description: 'Ejercicios variados en un circuito para mayor resistencia.' },
-  ];
+export class RoutineListComponent implements OnInit {
+  routines: Rutina[] = []; // Define el tipo correcto si tienes la interfaz Rutina
 
+  constructor(private routineService: RoutineService) {} // Corregido: 'rutineService' a 'routineService'
+
+  ngOnInit(): void {
+    this.getRutinas();
+  }
+
+  // Método corregido
+  getRutinas(): void {
+    // Suscríbete al Observable que devuelve el servicio
+    this.routineService.getRutinas().subscribe((data: Rutina[]) => {
+      this.routines = data; // Asigna los datos a 'routines'
+    });
+  }
 }
+  
+
+
